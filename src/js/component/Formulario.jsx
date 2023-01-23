@@ -1,11 +1,11 @@
 import React from "react";
 import { useState } from "react";
-import Lista from "./LIsta.jsx";
+import Lista from "./Lista.jsx";
 
 const Formulario = () => {
 
     const [inputCreado, setInputCreado] = useState("");
-	const [almacenarTarea, setAlmacenarTarea] = useState([]);
+	const [tarea, setTarea] = useState([]);
 	
 
 	const añadirTarea = (e) => {
@@ -14,15 +14,15 @@ const Formulario = () => {
 
 	const crearArray = (e) =>{
 		if(e.key === 'Enter') {
-			setAlmacenarTarea([...almacenarTarea, inputCreado])
+			setTarea([...tarea, inputCreado])
 			setInputCreado("")
 		}
 	}
 
 	const borrarTarea= (index) => {
-		const borradoArray= [...almacenarTarea]
+		const borradoArray= [...tarea]
 		borradoArray.splice(index,1)
-		setAlmacenarTarea(borradoArray)
+		setTarea(borradoArray)
 	}
 
     return (
@@ -32,7 +32,7 @@ const Formulario = () => {
 
             <div>
                 {
-				almacenarTarea.map((tarea,index) => <Lista borrarTarea={borrarTarea} tarea={tarea} key={index}/> )
+				tarea.map((tarea,index) => <Lista borrarTarea={(e)=>borrarTarea(index)} tarea={tarea} key={index}/> )
 				}
             </div>
 
